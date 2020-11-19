@@ -1,0 +1,12 @@
+<% @houses.each do |house| %>
+	<div class="col-3">
+		<%= link_to(house_thumbnail(house), house_path(house)) %>
+		<h3 class="h5 mt-3">Owner: <%= house.owner %></h3>
+		<h6>Address: <%= house.address %><h6>
+		<h6>Rooms: <%= house.rooms %></h6>
+		<h6>Sqmt: <%= house.sqmt %></h6>
+		<h6>Floors: <%= house.floors %></h6>
+		<h6>Air Conditioner: <%= house.air_cond %></h6>
+		<h6>Price: <%= house.price %></h6>
+	</div>
+<%end%>
