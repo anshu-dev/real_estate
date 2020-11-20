@@ -1,14 +1,14 @@
 <% @commercial_units.each do |commercial_unit| %>
 	<div class="col-3">
-		<%= link_to(commercial_thumbnail(commercial_unit), house_path(commercial_unit)) %>
+    <%= commercial_thumbnail(commercial_unit) %>
 		<h3 class="h5 mt-3">Owner: <%= commercial_unit.owner %></h3>
 		<h6>Address: <%= commercial_unit.address %><h6>
 		<h6>Shop: <%= commercial_unit.shops %></h6>
 		<h6>Sqmt: <%= commercial_unit.sqmt %></h6>
 		<h6>Parking: <%= commercial_unit.parking %></h6>
 		<h6>Price: <%= commercial_unit.price %></h6>
-    <%if manager_signed_in? %>
-      <button class="btn btn-success" id="commercial_unit"  >Buy</button>
+    <%if manager_signed_in? && current_manager.role.eql?('user')%>
+      <button class="btn btn-success" id="commercial_unit" onclick="buyCommercialUnit(this)" value="<%= commercial_unit.id %>"  >Buy</button>
     <%else%>
       <%= link_to "Login To Buy", new_manager_session_path, class: "btn btn-success"%>
     <%end%>
@@ -16,15 +16,16 @@
 <%end%>
 
 <script type="text/javascript">
-  $("#commercial_unit").click(function(){
+  function buyCommercialUnit(element){
     $.ajax({
       url: "/purchase",
       method: "get",
+      data: {table_name: 'commercial_unit', id: element.value },
       success: function(data){
         
       }
     })
-  });
+}
 </script>
 
 

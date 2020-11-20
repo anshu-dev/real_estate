@@ -1,12 +1,29 @@
 <% @houses.each do |house| %>
-	<div class="col-3">
-		<%= link_to(house_thumbnail(house), house_path(house)) %>
-		<h3 class="h5 mt-3">Owner: <%= house.owner %></h3>
-		<h6>Address: <%= house.address %><h6>
-		<h6>Rooms: <%= house.rooms %></h6>
-		<h6>Sqmt: <%= house.sqmt %></h6>
-		<h6>Floors: <%= house.floors %></h6>
-		<h6>Air Conditioner: <%= house.air_cond %></h6>
-		<h6>Price: <%= house.price %></h6>
-	</div>
+  <div class="col-3">
+    <%= house_thumbnail(house) %>
+    <h3 class="h5 mt-3">Owner: <%= house.owner %></h3>
+    <h6>Address: <%= house.address %><h6>
+    <h6>Rooms: <%= house.rooms %></h6>
+    <h6>Sqmt: <%= house.sqmt %></h6>
+    <h6>Floors: <%= house.floors %></h6>
+    <h6>Air Conditioner: <%= house.air_cond %></h6>
+    <h6>Price: <%= house.price %></h6>
+    <%if manager_signed_in? && current_manager.role.eql?('user')%>
+      <button class="btn btn-success" id="house" onclick="buyhouse(this)" value="<%= house.id %>"  >Buy</button>
+    <%else%>
+      <%= link_to "Login To Buy", new_manager_session_path, class: "btn btn-success"%>
+    <%end%>
+  </div>
 <%end%>
+<script type="text/javascript">
+  function buyhouse(element){
+    $.ajax({
+      url: "/purchase",
+      method: "get",
+      data: {table_name: 'houses', id: element.value },
+      success: function(data){
+
+      }
+    })
+}
+</script>
