@@ -6,19 +6,18 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+  ruby '2.5.1'
 
-* System dependencies
+How to Use RealEstate Application
 
-* Configuration
+* First, you have to create an account by Sign Up.
 
-* Database creation
+* There is two option you can select either user or manager.
 
-* Database initialization
+* Manager has special privileges He/she can create Properties.
 
-* How to run the test suite
+* If you log in with the manager there is a button called Dashboard where you can create properties like houses, complex buildings, and commercial units.
 
-* Services (job queues, cache servers, search engines, etc.)
+* If you create an account as the user so at the user section page you get option to buy a property.
 
-* Deployment instructions
-
-* ...
+* On click on buy property two notification send first for the owner of the property and second for the current user.
